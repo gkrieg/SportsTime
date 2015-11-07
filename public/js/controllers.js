@@ -13,14 +13,14 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService','$state',fu
         "zip": $scope.user.zip,
         "password": $scope.user.password}
         ;
-        alert(JSON.stringify(str))
+
         $http({
           method: 'POST',
-          url: '/sportstime/insertUser',
+          url: '/sportstime/insertUser/',
           data: JSON.stringify(str)
 
         }).then(function successCallback(response) {
-            $scope.sports = data;
+            $scope.signInRes = response.data[0];
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -33,13 +33,21 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService','$state',fu
         var str = {"email": $scope.user.email,
         "password": $scope.user.password}
         ;
-        alert(JSON.stringify(str))
         $http({
           method: 'POST',
           url: '/sportstime/validateUser',
           data: JSON.stringify(str)
         }).then(function successCallback(response) {
-            $scope.user = response.data[0];
+            if (response.data[0]){
+                $scope.loggedInUser = response.data[0];
+                $scope.loggedInUser.firstname = response.data[0].firstname;
+                $scope.loggedInUser.lastname = response.data[0].lastname;
+                $scope.loggedInUser.age = response.data[0].age;
+                $scope.loggedInUser.email = response.data[0].email;
+                $scope.loggedInUser.phone = response.data[0].phone;
+                $scope.loggedInUser.zip = response.data[0].zip;
+            }
+
             $state.go('home');
           }, function errorCallback(response) {
             // called asynchronously if an error occurs

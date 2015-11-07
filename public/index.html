@@ -66,7 +66,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-controller="UserCtrl">
-                        <p ng-show="user">Hey {{user.firstname}}!</p>
+                        <a ng-show="$scope.loggedInUser">Hey {{$scope.loggedInUser.firstname}}!</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
@@ -91,16 +91,50 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1>Welcome to SportsTime!</h1>
-                <hr>
+                <hr class="light">
                 <p>The sports app to help you connect with others faster to play your favorite sports more often</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#loginModal">Login</a>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="service-box">
+                                <i class="fa fa-4x fa-soccer-ball-o wow bounceIn text-primary"></i>
+                                <h3>Select Your Sports</h3>
+                                <p class="text-muted">Choose you favorite sports</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="service-box">
+                                <i class="fa fa-4x fa-calendar wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                                <h3>Set Your Times</h3>
+                                <p class="text-muted">Set the times that you are free to play</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="service-box">
+                                <i class="fa fa-4x fa-arrow-right wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                                <h3>Create or Join an Event</h3>
+                                <p class="text-muted">Join an existing event, or create your own</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="service-box">
+                                <i class="fa fa-4x fa-thumbs-o-up wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                                <h3>Go Play!</h3>
+                                <p class="text-muted">Go to an event and play!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a href="#about" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#loginModal">Login</a>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#signUpModal">Sign Up</a> -->
                 <!-- Modal -->
                 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"ng-controller="UserCtrl">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel" color=orange>Log in</h4>
+                        <h4 class="modal-title" id="myModalLabel" color=red>Log in</h4>
                       </div>
                       <div class="modal-body">
                           <form name="login_form">
@@ -125,7 +159,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel" color=orange>Sign Up</h4>
+                        <h4 class="modal-title" id="myModalLabel" color=red>Sign Up</h4>
                       </div>
                       <div class="modal-body">
                           <form name="sign_up_form" action='#' ng-submit="insertUser()" ng-controller="UserCtrl">
@@ -152,7 +186,7 @@
                   </div>
                 </div>
 
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Sign Up</a>
+
             </div>
         </div>
     </header>
@@ -170,48 +204,15 @@
         </div>
     </section> -->
 
-    <section id="services">
+    <section id="sports">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About Our Service</h2>
+                    <h2 class="section-heading">Choose Your Sport</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-soccer-ball-o wow bounceIn text-primary"></i>
-                        <h3>Select Your Sports</h3>
-                        <p class="text-muted">Choose you favorite sports</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-calendar wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Set Your Times</h3>
-                        <p class="text-muted">Set the times that you are free to play</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-arrow-right wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Create or Join an Event</h3>
-                        <p class="text-muted">Join an existing event, or create your own</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-thumbs-o-up wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Go Play!</h3>
-                        <p class="text-muted">Go to an event and play!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="no-padding" id="#sports" ng-controller="SportsCtrl">
 
@@ -232,7 +233,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="contact">
         <div class="container">
             <div class="row">
