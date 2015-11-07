@@ -30,16 +30,64 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
     };
 }]);
 
+<<<<<<< HEAD
 SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $http) {
 
     $scope.categories = [];
+=======
+$scope.save = function() {
+
+
+    var str = { "firstname": $scope.user.firstname,
+    "lastname": $scope.user.lastname,
+    "email": $scope.user.email,
+    "age": $scope.user.age,
+    "phone": $scope.user.phone,
+    "zip": $scope.user.zip,
+    "password": $scope.user.password}
+    ;
+    alert(JSON.stringify(str))
+    $http({
+      method: 'POST',
+      url: '/sportstime/insertUser/',
+      data: JSON.stringify(str)
+>>>>>>> master
 
     $http({
         method: 'GET',
         url: '/sportstime/getSportsCategories'
     }).then(function successCallback(response) {
+<<<<<<< HEAD
         $scope.categories = response.data;
     }), function errorCallback(response) {
         return;
     })
+=======
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    })
+    $scope.goToState('home');
+
+};
+
+$scope.login = function() {
+    var str = {"email": $scope.user.email,
+    "password": $scope.user.password}
+    ;
+    alert(JSON.stringify(str))
+    $http({
+      method: 'POST',
+      url: '/sportstime/validateUser',
+      data: JSON.stringify(str)
+
+    }).then(function successCallback(response) {
+        $scope.user = response.data;
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    })
+    $scope.goToState('home');
+};
+>>>>>>> master
 }]);

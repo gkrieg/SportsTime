@@ -1,0 +1,18 @@
+2015-11-06T10:30:37.638-0700 I JOURNAL  [initandlisten] journal dir=/data/Hackathon/journal
+2015-11-06T10:30:37.639-0700 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-11-06T10:30:37.653-0700 I JOURNAL  [durability] Durability thread started
+2015-11-06T10:30:37.653-0700 I CONTROL  [initandlisten] MongoDB starting : pid=1772 port=27000 dbpath=/data/Hackathon 64-bit host=Yazans-MacBook-Pro.local
+2015-11-06T10:30:37.653-0700 I JOURNAL  [journal writer] Journal writer thread started
+2015-11-06T10:30:37.654-0700 I CONTROL  [initandlisten] db version v3.0.7
+2015-11-06T10:30:37.654-0700 I CONTROL  [initandlisten] git version: 6ce7cbe8c6b899552dadd907604559806aa2e9bd
+2015-11-06T10:30:37.654-0700 I CONTROL  [initandlisten] build info: Darwin mci-osx108-13.build.10gen.cc 12.3.0 Darwin Kernel Version 12.3.0: Sun Jan  6 22:37:10 PST 2013; root:xnu-2050.22.13~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+2015-11-06T10:30:37.654-0700 I CONTROL  [initandlisten] allocator: system
+2015-11-06T10:30:37.654-0700 I CONTROL  [initandlisten] options: { config: "/data/Hackathon/automation-mongod.conf", net: { port: 27000 }, processManagement: { fork: true }, storage: { dbPath: "/data/Hackathon" }, systemLog: { destination: "file", path: "/data/Hackathon/mongodb.log" } }
+2015-11-06T10:30:37.655-0700 I INDEX    [initandlisten] allocating new ns file /data/Hackathon/local.ns, filling with zeroes...
+2015-11-06T10:30:37.681-0700 I STORAGE  [FileAllocator] allocating new datafile /data/Hackathon/local.0, filling with zeroes...
+2015-11-06T10:30:37.681-0700 I STORAGE  [FileAllocator] creating directory /data/Hackathon/_tmp
+2015-11-06T10:30:37.773-0700 I STORAGE  [FileAllocator] done allocating datafile /data/Hackathon/local.0, size: 64MB,  took 0.091 secs
+2015-11-06T10:30:37.793-0700 I NETWORK  [initandlisten] waiting for connections on port 27000
+2015-11-06T10:30:38.663-0700 I NETWORK  [initandlisten] connection accepted from 144.39.160.89:49998 #1 (1 connection now open)
+2015-11-06T10:30:38.686-0700 I NETWORK  [conn1] end connection 144.39.160.89:49998 (0 connections now open)
+2015-11-06T10:30:38.687-0700 I NETWORK  [initandlisten] connection accepted from 144.39.160.89:49999 #2 (1 connection now open)
