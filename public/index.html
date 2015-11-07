@@ -209,8 +209,12 @@
         </div>
     </section>
 
-    <section class="no-padding" id="#sports">
+    <section class="no-padding" id="#sports" ng-controller="SportsCtrl">
+
         <div class="container-fluid">
+            <div ng-repeat="category in categories">
+                {{category.title}}
+            </div>
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
                     <a href="#" class="sports-box">
