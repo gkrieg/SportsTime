@@ -6,10 +6,10 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
 $scope.insertUser = function(data){
 
 
-    alert("something")
+    alert("something");
     $http({
       method: 'POST',
-      url: '/SportsTime/insertUser'
+      url: '/sportstime/insertUser/'
     }).then(function successCallback(response) {
         $scope.sports = data;
       }, function errorCallback(response) {
@@ -19,11 +19,11 @@ $scope.insertUser = function(data){
 }
 
 $scope.save = function() {
-    alert("something")
+    alert($scope.user());
     $http({
       method: 'POST',
-      url: ':8001/SportsTime/insertUser',
-      data: $scope.user
+      url: '/sportstime/insertUser/',
+      data: $scope.user()
     }).then(function successCallback(response) {
         $scope.sports = data;
       }, function errorCallback(response) {
