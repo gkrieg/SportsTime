@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/gkrieg/SportsTime#readme",
   "dependencies": {
-    "mongodb": "^2.0.47"
-  }
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.48",
+    "nodemailer": "^1.8.0"
+  },
+  "devDependencies": {}
 }

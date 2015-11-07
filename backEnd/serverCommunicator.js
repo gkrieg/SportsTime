@@ -40,7 +40,7 @@ app.get('/', function (req, res){
 /////////// Views //////////////////////////
 
 //call insertUser
-app.post('/sportstime/insertUser/', function (req, res){
+app.post('/rest/sportstime/insertUser/', function (req, res){
 	// parse request
 	console.log("in here");
 	var userInfo = req.body;
@@ -54,7 +54,7 @@ app.post('/sportstime/insertUser/', function (req, res){
 });
 
 // Call validateUser
-app.post('/sportstime/validateUser/', function (req, res){
+app.post('/rest/sportstime/validateUser/', function (req, res){
 	// parse request
 	var userInfo = req.body;
 
@@ -68,7 +68,7 @@ app.post('/sportstime/validateUser/', function (req, res){
 });
 
 // call insertSport
-app.post('/sportstime/insertSport/', function (req, res){
+app.post('/rest/sportstime/insertSport/', function (req, res){
 	// parse request
 	var sportInfo = req.body;
 
@@ -82,7 +82,7 @@ app.post('/sportstime/insertSport/', function (req, res){
 });
 
 // call getSportList
-app.get('/sportstime/getSportList/', function (req, res){
+app.get('/rest/sportstime/getSportList/', function (req, res){
 	// insert to db
 	var sports = database.collection('sports');
 	sports.find({}).toArray(function(err, result){
@@ -93,7 +93,7 @@ app.get('/sportstime/getSportList/', function (req, res){
 });
 
 // call insertEvent
-app.post('/sportstime/insertEvent/', function (req, res){
+app.post('/rest/sportstime/insertEvent/', function (req, res){
 	// parse request
 	var eventInfo = req.body;
 	var eventTime = eventInfo.Time;
@@ -140,7 +140,7 @@ app.post('/sportstime/insertEvent/', function (req, res){
 });
 
 // call getEvents by sport
-app.post('/sportstime/getEvents/', function (req, res){
+app.post('/rest/sportstime/getEvents/', function (req, res){
 	// parse request
 	var targetEvent = req.body;
 
@@ -154,7 +154,7 @@ app.post('/sportstime/getEvents/', function (req, res){
 });
 
 // call addPersonToEvent
-app.post('/sportstime/addPersonToEvent/', function (req, res){
+app.post('/rest/sportstime/addPersonToEvent/', function (req, res){
 	// parse request
 	var additionInfo = req.body;
 
