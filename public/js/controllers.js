@@ -19,10 +19,19 @@ $scope.insertUser = function(data){
 }
 
 $scope.save = function() {
-    alert("something")
+
+    var str = { "firstname": $scope.user.firstname,
+    "lastname": $scope.user.lastname,
+    "age": $scope.user.age,
+    "email": $scope.user.email,
+    "phone": $scope.user.phone,
+    "zip": $scope.user.zip,
+    "password": $scope.user.password}
+    ;
+    alert(JSON.stringify(str))
     $http({
       method: 'POST',
-      url: ':8001/SportsTime/insertUser',
+      url: '/SportsTime/insertUser',
       data: $scope.user
     }).then(function successCallback(response) {
         $scope.sports = data;

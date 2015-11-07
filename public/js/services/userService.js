@@ -55,10 +55,10 @@ SportsTimeApp.factory('UserService', function() {
 
         };
 
-
+        return obj;
     };
 
-    
+
 
 
   // factory function body that constructs shinyNewServiceInstance
