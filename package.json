@@ -4,9 +4,8 @@
   "description": "App to match people to sports",
   "main": "index.js",
   "scripts": {
-    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data --port 27017 > cd ../../../",
-    "start": "node index.js",
-    "poststop": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongo sportstime --eval 'db.shutdownServer()' "
+    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data/db --port 27017 > cd ../../../",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/gkrieg/SportsTime/issues"
   },
-  "homepage": "https://github.com/gkrieg/SportsTime#readme"
+  "homepage": "https://github.com/gkrieg/SportsTime#readme",
+  "dependencies": {
+    "mongodb": "^2.0.47"
+  }
 }
