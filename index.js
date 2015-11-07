@@ -23,9 +23,15 @@ var server = app.listen(8001, function () {
 /////////////////////////////////////////////
 
 app.use(express.static(__dirname + '/public'));
+app.engine('html', require('ejs').renderFile);
 app.get('/', function(req, res) {
     res.render('index.html');
 });
+
+app.get('/profile', function(req, res) {
+    res.render('profile.html');
+});
+
 
 
 /////////// Views //////////////////////////
@@ -34,10 +40,14 @@ app.get('/', function(req, res) {
 app.post('/sportstime/insertUser/', function (req, res){
 	// parse request
 	var userInfo = req.body;
+	console.log("HERE IS IT");
+	console.log(userInfo);
 	// insert to db
 	var users = database.collection('users');
 	users.insert(userInfo, function(err, result){
 		assert.equal(err, null);
+		console.log("HERE IS IT");
+		console.log(result);
 		// return response
 		res.send(result);
 	});
@@ -53,6 +63,7 @@ app.post('/sportstime/validateUser/', function (req, res){
 	users.find(userInfo).toArray(function(err, result){
 		assert.equal(err, null);
 		// return response
+		console.log("HERE IS THE OTHER RESULT")
 		console.log(result);
 		res.send(result);
 	});

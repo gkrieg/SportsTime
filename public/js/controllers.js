@@ -56,6 +56,12 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService','$state',fu
 
     };
 
+    $scope.goToState = function(state) {
+        console.log(state);
+        $state.go(state);
+
+    };
+
 
 }]);
 
@@ -71,6 +77,12 @@ SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $htt
     }, function errorCallback(response) {
         return;
     });
+
+
+}]);
+
+SportsTimeApp.controller('ProfileCtrl', ['$scope','$state', function($scope, $state) {
+    $scope.categories = [];
 
 
 }]);

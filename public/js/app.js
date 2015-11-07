@@ -4,15 +4,15 @@ var SportsTimeApp = angular.module('SportsTimeApp',['ui.router'])
     $stateProvider
 
 
-    .state('profile', {
-        url: '/profile',
-        templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
-    })
     .state('home', {
         url: '/home',
         templateUrl: 'index.html',
         controller: 'HomeCtrl'
+    })
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
     })
     //keep copying until you are at the end.
     ;
