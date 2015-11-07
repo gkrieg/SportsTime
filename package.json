@@ -4,9 +4,9 @@
   "description": "App to match people to sports",
   "main": "index.js",
   "scripts": {
-    "prestart": "./mongod --dbpath=/data --port 27017",
+    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data --port 27017 > cd ../../../",
     "start": "node index.js",
-    "poststop": "./mongo sportstime --eval 'db.shutdownServer()' "
+    "poststop": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongo sportstime --eval 'db.shutdownServer()' "
   },
   "repository": {
     "type": "git",
