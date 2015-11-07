@@ -3,20 +3,7 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
 
 
     $scope.user = UserService;
-$scope.insertUser = function(data){
 
-
-    alert("something");
-    $http({
-      method: 'POST',
-      url: '/sportstime/insertUser/'
-    }).then(function successCallback(response) {
-        $scope.sports = data;
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
-}
 
 $scope.save = function() {
 
@@ -32,7 +19,7 @@ $scope.save = function() {
     alert(JSON.stringify(str))
     $http({
       method: 'POST',
-      url: '/SportsTime/insertUser',
+      url: '/sportstime/insertUser',
       data: JSON.stringify(str)
 
     }).then(function successCallback(response) {
@@ -45,10 +32,22 @@ $scope.save = function() {
 
 };
 
+$scope.login = function() {
+    var str = {"email": $scope.user.email,
+    "password": $scope.user.password}
+    ;
+    alert(JSON.stringify(str))
+    $http({
+      method: 'POST',
+      url: '/sportstime/validateUser',
+      data: JSON.stringify(str)
 
-
-
-
-
-
+    }).then(function successCallback(response) {
+        $scope.user = response.data;
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    })
+    $scope.goToState('home');
+};
 }]);
