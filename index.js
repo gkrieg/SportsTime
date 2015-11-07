@@ -91,6 +91,8 @@ app.post('/rest/sportstime/insertEvent/', function (req, res){
 	events.insert(eventInfo, function(err, result){
 		assert.equal(err, null);
 		// return response
+		console.log(result);
+		console.log(result.sport);
 		res.send(result);
 	});
 });
@@ -102,10 +104,11 @@ app.post('/rest/sportstime/getEvents/', function (req, res){
 
 	var sports = database.collection('sports');
 	var sport_id;
-	var sport = sports.find({"sport":targetSport.sport}).toArray(function(err, result){
+	sports.find({"sport":targetSport.sport}).toArray(function(err, result){
 		assert.equal(err, null);
 		console.log(result);
-		sport_id = result._id;
+		console.log(result[0]._id);
+		sport_id = result[0]._id;
 	});
 
 	// insert to db
