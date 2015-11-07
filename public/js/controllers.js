@@ -22,7 +22,7 @@ $scope.save = function() {
     alert("something")
     $http({
       method: 'POST',
-      url: '/SportsTime/insertUser',
+      url: ':8001/SportsTime/insertUser',
       data: $scope.user
     }).then(function successCallback(response) {
         $scope.sports = data;
