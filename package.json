@@ -4,7 +4,6 @@
   "description": "App to match people to sports",
   "main": "index.js",
   "scripts": {
-    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data --port 27017 > cd ../../../",
     "start": "node index.js"
   },
   "repository": {
@@ -18,6 +17,10 @@
   },
   "homepage": "https://github.com/gkrieg/SportsTime#readme",
   "dependencies": {
-    "mongodb": "^2.0.47"
-  }
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.48",
+    "nodemailer": "^1.8.0"
+  },
+  "devDependencies": {}
 }

@@ -1,8 +1,10 @@
 var MongoClient = require('mongodb').MongoClient,
 		 assert = require('assert'), 
-		 express = require('express');
+		 express = require('express'),
+		 nodemailer = require('nodemailer');
 
-/////////// Data base stuff //////////////////
+/////////// Initialization //////////////////
+
 // Connection URL
 var url = 'mongodb://localhost:27017/sportstime';
 var database;
@@ -20,19 +22,28 @@ var server = app.listen(8001, function () {
 	var port = server.address().port;
 	console.log('Listening on ' + host + port);
 });
+
+// Create reusable transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+	service: 'Gmail',
+	auth: {
+		user: 'gmail.user@gmail.com',
+		pass: 'userpass'
+	}
+});
 /////////////////////////////////////////////
 
-app.get('/', function(req, res){
+app.get('/', function (req, res){
 	res.render('index.html');
 });
 
 /////////// Views //////////////////////////
 
 //call insertUser
-app.post('/rest/sportstime/insertUser/', function (req, res){
+app.post('/sportstime/insertUser/', function (req, res){
 	// parse request
+	console.log("in here");
 	var userInfo = req.body;
-
 	// insert to db
 	var users = database.collection('users');
 	users.insert(userInfo, function(err, result){
@@ -43,7 +54,7 @@ app.post('/rest/sportstime/insertUser/', function (req, res){
 });
 
 // Call validateUser
-app.post('/rest/sportstime/validateUser/', function (req, res){
+app.post('/sportstime/validateUser/', function (req, res){
 	// parse request
 	var userInfo = req.body;
 
@@ -57,7 +68,7 @@ app.post('/rest/sportstime/validateUser/', function (req, res){
 });
 
 // call insertSport
-app.post('/rest/sportstime/insertSport/', function (req, res){
+app.post('/sportstime/insertSport/', function (req, res){
 	// parse request
 	var sportInfo = req.body;
 
@@ -71,7 +82,7 @@ app.post('/rest/sportstime/insertSport/', function (req, res){
 });
 
 // call getSportList
-app.get('/rest/sportstime/getSportList/', function (req, res){
+app.get('/sportstime/getSportList/', function (req, res){
 	// insert to db
 	var sports = database.collection('sports');
 	sports.find({}).toArray(function(err, result){
@@ -82,21 +93,54 @@ app.get('/rest/sportstime/getSportList/', function (req, res){
 });
 
 // call insertEvent
-app.post('/rest/sportstime/insertEvent/', function (req, res){
+app.post('/sportstime/insertEvent/', function (req, res){
 	// parse request
 	var eventInfo = req.body;
+	var eventTime = eventInfo.Time;
+	var eventZipCode = eventInfo.zipCode;
+	// Grab the email of the person
+	var users = database.collection('users');
+	var createrOfEvent = users.find({"firstName":eventInfo.firstName,
+				"lastName":eventInfo:lastName}).toArray[0];
+	var creatorEmail = creatorEmail.email;
+
 
 	// insert to db
 	var events = database.collection('events');
-	events.insert(eventInfo, function(err, result){
+	var users = database.collection('users');
+	events.insert(eventInfo, function(creatorEmail, eventTime, 
+		eventZipCode, users, err, result){
 		assert.equal(err, null);
+
+		// Notify users of same schedule
+		users = users.find({"freeTime":eventTime, "zipCode":eventZipCode}).toArray();
+
+		// Email the users of the event
+		for each (var user in users){
+			// setup e-mail data with unicode symbols
+			var mailOptions = {
+				from: creatorEmail, // sender address
+				to: user.email, // receiver
+				subject: 'New Event!', // subject line
+				text: 'Hey There! I created a new event!', // plaintext body
+				html: '<a href="localhost:8001/">Click Here!</a>' // html body
+			}
+			// send mail with defined transport object
+			transporter.sendMail(mailOptions, function(error, info)){
+				if (error){
+					return console.log(error);
+				}
+				console.log('Message sent: ' + info.response);
+			}
+		}
+
 		// return response
 		res.send(result);
 	});
 });
 
 // call getEvents by sport
-app.post('/rest/sportstime/getEvents/', function (req, res){
+app.post('/sportstime/getEvents/', function (req, res){
 	// parse request
 	var targetEvent = req.body;
 
@@ -110,7 +154,7 @@ app.post('/rest/sportstime/getEvents/', function (req, res){
 });
 
 // call addPersonToEvent
-app.post('/rest/sportstime/addPersonToEvent/', function (req, res){
+app.post('/sportstime/addPersonToEvent/', function (req, res){
 	// parse request
 	var additionInfo = req.body;
 
