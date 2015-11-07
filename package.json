@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/gkrieg/SportsTime/issues"
   },
-  "homepage": "https://github.com/gkrieg/SportsTime#readme"
+  "homepage": "https://github.com/gkrieg/SportsTime#readme",
+  "dependencies": {
+    "mongodb": "^2.0.47"
+  }
 }
