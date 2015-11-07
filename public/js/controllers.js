@@ -29,6 +29,7 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
 
     };
 
+<<<<<<< HEAD
     $scope.login = function() {
         var str = {"email": $scope.user.email,
         "password": $scope.user.password}
@@ -46,6 +47,27 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
         })
         $scope.goToState('home');
     };
+=======
+    }).then(function successCallback(response) {
+        $scope.user = $scope.user();
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    })
+    $scope.goToState('home');
+
+};
+
+$scope.login = function() {
+    var str = {"email": $scope.user.email,
+    "password": $scope.user.password}
+    ;
+    alert(JSON.stringify(str))
+    $http({
+      method: 'POST',
+      url: '/sportstime/validateUser/',
+      data: JSON.stringify(str)
+>>>>>>> master
 
 }]);
 
@@ -55,10 +77,20 @@ SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $htt
         method: 'GET',
         url: '/sportstime/getSportList/'
     }).then(function successCallback(response) {
+<<<<<<< HEAD
         console.log('success');
         console.log(response.data);
         $scope.categories = response.data;
     }, function errorCallback(response) {
         return;
     });
+=======
+        $scope.user = response.data;
+      }, function errorCallback(response) {
+        console.log("I can't")
+    })
+    alert($scope.user)
+    $scope.goToState('home');
+};
+>>>>>>> master
 }]);
