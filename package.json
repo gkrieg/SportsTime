@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data --port 27017 > cd ../../../",
-    "start": "node index.js",
-    "poststop": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongo sportstime --eval 'db.shutdownServer()' "
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
