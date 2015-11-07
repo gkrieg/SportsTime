@@ -23,6 +23,7 @@ $scope.save = function() {
       data: JSON.stringify(str)
 
     }).then(function successCallback(response) {
+        $scope.user = $scope.user();
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -38,15 +39,15 @@ $scope.login = function() {
     alert(JSON.stringify(str))
     $http({
       method: 'POST',
-      url: '/sportstime/validateUser',
+      url: '/sportstime/validateUser/',
       data: JSON.stringify(str)
 
     }).then(function successCallback(response) {
         $scope.user = response.data;
       }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
+        console.log("I can't")
     })
+    alert($scope.user)
     $scope.goToState('home');
 };
 }]);
