@@ -209,9 +209,11 @@ header .header-content .header-content-inner hr {
 
 header .header-content .header-content-inner p {
     margin-bottom: 50px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 300;
     color: rgba(255,255,255,.95);
+    font-family: Lato;
+    font-weight: 300;
 }
 
 @media(min-width:768px) {
@@ -500,10 +502,27 @@ body {
     padding: 10px 15px;
     margin: 10px;
     border-bottom: solid 1px #bbb;
+    position: relative;
 }
 
 .event-list span {
     float: right;
+}
+
+.event-list .join-button {
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: lowercase;
+    color: #027BCE;
+    border: 1px solid #027BCE;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.event-list span.detail {
+    position: absolute;
+    right: 5px;
 }
 
 .event-list li:hover {
@@ -512,11 +531,26 @@ body {
     cursor: pointer;
 }
 
+.event-list li.event:hover > span.detail {
+    /*border-right: 4px solid #d10c0c;*/
+}
+
 .event-list li:hover > h3 {
     color: #d10c0c;
 }
 
+/*.event-list li:hover > h4 {
+    display: block;
+}*/
+
 .event-list li h3 {
     margin: 0;
     padding: 0;
+    font-family: Lato;
+    font-weight: 300;
+}
+
+.event-list li h4 {
+    font-family: Lato;
+    font-weight: 300;
 }

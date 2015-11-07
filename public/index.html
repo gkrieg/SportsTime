@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
@@ -100,28 +101,24 @@
                             <div class="service-box">
                                 <i class="fa fa-4x fa-soccer-ball-o wow bounceIn text-primary"></i>
                                 <h3>Select Your Sports</h3>
-                                <p class="text-muted">Choose you favorite sports</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 text-center">
                             <div class="service-box">
                                 <i class="fa fa-4x fa-calendar wow bounceIn text-primary" data-wow-delay=".1s"></i>
                                 <h3>Set Your Times</h3>
-                                <p class="text-muted">Set the times that you are free to play</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 text-center">
                             <div class="service-box">
                                 <i class="fa fa-4x fa-arrow-right wow bounceIn text-primary" data-wow-delay=".2s"></i>
                                 <h3>Create or Join an Event</h3>
-                                <p class="text-muted">Join an existing event, or create your own</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 text-center">
                             <div class="service-box">
                                 <i class="fa fa-4x fa-thumbs-o-up wow bounceIn text-primary" data-wow-delay=".3s"></i>
                                 <h3>Go Play!</h3>
-                                <p class="text-muted">Go to an event and play!</p>
                             </div>
                         </div>
                     </div>
@@ -231,7 +228,10 @@
                     </a>
                     <div ng-show="show">
                         <ul class="event-list">
-                            <li ng-repeat="event in category.events"><h3>{{event.title}}</h3></li>
+                            <li class="event" ng-repeat="event in category.events | orderBy: event.date">
+                                <h3>{{event.date}}, {{event.time}} @ {{event.place}} </h3>
+                                <h4>We have {{event.people}} people, we need more</h4>
+                            </li>
                             <li><h3><span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="modal" data-target="#CreateModal"></span> Create Event</h3></li>
                         </ul>
                     </div>
