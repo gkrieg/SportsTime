@@ -219,7 +219,6 @@ header .header-content .header-content-inner p {
     header .header-content {
         position: absolute;
         top: 50%;
-        padding: 0 50px;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
@@ -473,4 +472,12 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #222;
+}
+
+.modal-content input {
+    color: #000;
+}
+
+.modal-title {
+    color: #000;
 }

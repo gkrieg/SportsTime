@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
 
@@ -10,6 +10,9 @@
     <meta name="author" content="">
 
     <title>SportsTime</title>
+    <script src="lib/angular/angular.js" type="text/javascript"></script>
+    <script src="lib/angular/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="js/app.js" type="text/javascript"></script>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -18,12 +21,21 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
+
+
+    <!-- Services/Controllers-->
+    <script src="js/controllers.js" type="text/javascript"></script>
+    <script src="js/services/UserService.js" type="text/javascript"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,7 +46,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app='SportsTimeApp'>
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -77,13 +89,71 @@
                 <h1>Welcome to SportsTime!</h1>
                 <hr>
                 <p>The sports app to help you connect with others faster to play your favorite sports more often</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Login</a>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#loginModal">Login</a>
+                <!-- Modal -->
+                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" color=orange>Log in</h4>
+                      </div>
+                      <div class="modal-body">
+                          <form method="post" action="" name="login_form">
+                <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
+                <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
+                <p><button type="submit" class="btn btn-primary">Sign in</button>
+                  <a href="#">Forgot Password?</a>
+                </p>
+              </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" color=orange>Sign Up</h4>
+                      </div>
+                      <div class="modal-body">
+                          <form name="sign_up_form" action='#' ng-submit="insertUser()" ng-controller="UserCtrl">
+                            <p><input type="text" class="span3" name="FirstName" placeholder="First Name" ng-model=user.firstname></p>
+                            <p><input type="text" class="span3" name="LastName" placeholder="Last Name" ng-model=user.lastname></p>
+                            <p><input type="text" class="span3" name="Age" placeholder="Age" ng-model=user.age></p>
+                            <p><input type="text" class="span3" name="Phone" placeholder="Phone Number" ng-model=user.phone></p>
+                            <p><input type="text" class="span3" name="Zip" placeholder="Zip Code" ng-model=user.zip></p>
+                            <p><a class="span2" ng-model=user.gender>Gender: </a><select name="gender" class="span2">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select></p>
+                            <p><input type="text" class="span3" name="Email" id="email" placeholder="Email"  ng-model=user.email></p>
+                            <p><input type="password" class="span3" name="Password" placeholder="Password" ng-model=user.password></p>
+                            <p><input type="password" class="span3" name="rPassword" placeholder="Repeat Password"></p>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary" ng-click="save()">Sign Up</button>
+                            </div>
+                          </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Sign Up</a>
             </div>
         </div>
     </header>
 
-    <section class="bg-primary" id="about">
+    <!-- <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -94,13 +164,13 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">About Our Service</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -109,37 +179,37 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                        <i class="fa fa-4x fa-soccer-ball-o wow bounceIn text-primary"></i>
+                        <h3>Select Your Sports</h3>
+                        <p class="text-muted">Choose you favorite sports</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+                        <i class="fa fa-4x fa-calendar wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Set Your Times</h3>
+                        <p class="text-muted">Set the times that you are free to play</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                        <i class="fa fa-4x fa-arrow-right wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Create or Join an Event</h3>
+                        <p class="text-muted">Join an existing event, or create your own</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                        <i class="fa fa-4x fa-thumbs-o-up wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Go Play!</h3>
+                        <p class="text-muted">Go to an event and play!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="no-padding" id="sports">
+    <section class="no-padding" id="#sports">
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
@@ -236,30 +306,23 @@
         </div>
     </section>
 
-    <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
-            </div>
-        </div>
-    </aside>
+
 
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <h2 class="section-heading">Got a Suggestion?</h2>
                     <hr class="primary">
-                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                    <p>Give us a call or send us an email and we will get back to you as soon as possible!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
                     <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>123-456-6789</p>
+                    <p>801-913-5627</p>
                 </div>
                 <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                    <p><a href="mailto:your-email@your-domain.com">feedback@sportstime.com</a></p>
                 </div>
             </div>
         </div>
