@@ -67,14 +67,57 @@ app.post('/rest/sportstime/insertSport/', function (req, res){
 	});
 });
 
-//
+// call getSportList
+app.get('/rest/sportstime/getSportList/', function (req, res){
+	// insert to db
+	var sports = database.collection('sports');
+	sports.find({}).toArray(function(err, result){
+		assert.equal(err, null);
+		// return response
+		res.send(result);
+	});
+});
 
+// call insertEvent
+app.post('/rest/sportstime/insertEvent/', function (req, res){
+	// parse request
+	var eventInfo = req.body;
+
+	// insert to db
+	var events = database.collection('events');
+	events.insert(eventInfo, function(err, result){
+		assert.equal(err, null);
+		// return response
+		res.send(result);
+	});
+});
+
+// call getEvents by sport
+app.post('/rest/sportstime/getEvents/', function (req, res){
+	// parse request
+	var targetEvent = req.body;
+
+	// insert to db
+	var events = database.collection('events');
+	events.find({"sport_id":targetEvent.sport_id}).toArray(function(err, result){
+		assert.equal(err, null);
+		// return response
+		res.send(result);
+	});
+});
+
+// call addPersonToEvent
+app.post('/rest/sportstime/addPersonToEvent/', function (req, res){
+	// parse request
+	var additionInfo = req.body;
+
+	// insert to db
+	var events = database.collection('events');
+	events.update({"_id":additionInfo._id},
+		{ $push: {"person_id":additionInfo.person_id}}, function(err, result){
+		assert.equal(err, null);
+		// return response
+		res.send(result);
+	});
+});
 ///////////////////////////////////////////
-
-/******* VALIDATIONS *******/
-
-//function validateNewUser(user) {
-//	if (!user.username) {
-//		return false;
-//	}	
-//}
