@@ -27,6 +27,7 @@ app.get('/', function(req, res) {
     res.render('index.html');
 });
 
+
 /////////// Views //////////////////////////
 
 //call insertUser
@@ -52,6 +53,7 @@ app.post('/sportstime/validateUser/', function (req, res){
 	users.find(userInfo).toArray(function(err, result){
 		assert.equal(err, null);
 		// return response
+		console.log(result);
 		res.send(result);
 	});
 });
@@ -113,7 +115,7 @@ app.post('/rest/sportstime/getEvents/', function (req, res){
 		});
 	});
 	// insert to db
-	
+
 });
 
 // call addPersonToEvent
@@ -131,4 +133,3 @@ app.post('/sportstime/addPersonToEvent/', function (req, res){
 	});
 });
 ///////////////////////////////////////////
-

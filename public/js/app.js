@@ -17,5 +17,5 @@ var SportsTimeApp = angular.module('SportsTimeApp',['ui.router'])
     //keep copying until you are at the end.
     ;
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('home');
 });
