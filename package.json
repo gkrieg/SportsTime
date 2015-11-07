@@ -4,7 +4,7 @@
   "description": "App to match people to sports",
   "main": "index.js",
   "scripts": {
-    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data/db --port 27017 > cd ../../../",
+    "prestart": "cd backEnd/mongodb-osx-x86_64-3.0.7/bin > ./mongod --dbpath=/data --port 27017 > cd ../../../",
     "start": "node index.js"
   },
   "repository": {

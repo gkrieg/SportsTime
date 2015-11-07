@@ -38,7 +38,6 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService',function ($
           method: 'POST',
           url: '/sportstime/validateUser',
           data: JSON.stringify(str)
-
         }).then(function successCallback(response) {
             $scope.user = response.data;
           }, function errorCallback(response) {
