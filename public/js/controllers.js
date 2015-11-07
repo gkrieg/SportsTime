@@ -65,12 +65,22 @@ SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $htt
         method: 'GET',
         url: '/sportstime/getSportList/'
     }).then(function successCallback(response) {
-        console.log('success');
-        console.log(response.data);
         $scope.categories = response.data;
     }, function errorCallback(response) {
         return;
     });
 
-
+    $scope.loadEvents = function(sport, show) {
+        if (show) {
+            $http({
+                method: 'POST',
+                url: '/rest/sportstime/getEvents/',
+                data: JSON.stringify(sport)
+            }).then(function successCallback(response) {
+                sport.events = response.data;
+            }, function errorCallback(response) {
+                return;
+            });
+        }
+    };
 }]);
