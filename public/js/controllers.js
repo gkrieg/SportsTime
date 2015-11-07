@@ -10,8 +10,8 @@ $scope.save = function() {
 
     var str = { "firstname": $scope.user.firstname,
     "lastname": $scope.user.lastname,
-    "age": $scope.user.age,
     "email": $scope.user.email,
+    "age": $scope.user.age,
     "phone": $scope.user.phone,
     "zip": $scope.user.zip,
     "password": $scope.user.password}
@@ -19,11 +19,10 @@ $scope.save = function() {
     alert(JSON.stringify(str))
     $http({
       method: 'POST',
-      url: '/sportstime/insertUser',
+      url: '/sportstime/insertUser/',
       data: JSON.stringify(str)
 
     }).then(function successCallback(response) {
-        $scope.sports = data;
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
