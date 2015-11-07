@@ -57,7 +57,7 @@ app.post('/sportstime/validateUser/', function (req, res){
 });
 
 // call insertSport
-app.post('/sportstime/insertSport/', function (req, res){
+app.post('/rest/sportstime/insertSport/', function (req, res){
 	// parse request
 	var sportInfo = req.body;
 
@@ -82,7 +82,7 @@ app.get('/sportstime/getSportList/', function (req, res){
 });
 
 // call insertEvent
-app.post('/sportstime/insertEvent/', function (req, res){
+app.post('/rest/sportstime/insertEvent/', function (req, res){
 	// parse request
 	var eventInfo = req.body;
 
@@ -96,13 +96,21 @@ app.post('/sportstime/insertEvent/', function (req, res){
 });
 
 // call getEvents by sport
-app.post('/sportstime/getEvents/', function (req, res){
+app.post('/rest/sportstime/getEvents/', function (req, res){
 	// parse request
-	var targetEvent = req.body;
+	var targetSport = req.body;
+
+	var sports = database.collection('sports');
+	var sport_id;
+	var sport = sports.find({"sport":targetSport.sport}).toArray(function(err, result){
+		assert.equal(err, null);
+		console.log(result);
+		sport_id = result._id;
+	});
 
 	// insert to db
 	var events = database.collection('events');
-	events.find({"sport_id":targetEvent.sport_id}).toArray(function(err, result){
+	events.find({"sport_id":sport_id}).toArray(function(err, result){
 		assert.equal(err, null);
 		// return response
 		res.send(result);
