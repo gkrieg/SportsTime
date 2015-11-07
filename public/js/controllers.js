@@ -96,3 +96,30 @@ SportsTimeApp.controller('ProfileCtrl', ['$scope','$state', function($scope, $st
 
 
 }]);
+
+SportsTimeApp.controller('EventCtrl', ['$scope','EventService','state', function($scope, EventService,$state) {
+    $scope.event = EventService();
+
+    $scope.create = function(){
+        var str = { "place": $scope.event.space,
+        "time": $scope.event.time,
+        "date": $scope.event.date
+    }
+
+        ;
+
+        $http({
+          method: 'POST',
+          url: '/sportstime/insertUser/',
+          data: JSON.stringify(str)
+
+        }).then(function successCallback(response) {
+            $scope.signInRes = response.data[0];
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        })
+    }
+
+
+}]);
