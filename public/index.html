@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>SportsTime</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="lib/angular/angular.js" type="text/javascript"></script>
     <script src="lib/angular/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
@@ -64,6 +65,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-controller="UserCtrl">
+                        <p ng-show="user">Hey {{user.firstname}}!</p>
+                    </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
@@ -212,95 +216,14 @@
     <section class="no-padding" id="#sports" ng-controller="SportsCtrl">
 
         <div class="container-fluid">
-            <div ng-repeat="category in categories">
-                {{category.title}}
-            </div>
             <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6" ng-repeat="category in categories">
                     <a href="#" class="sports-box">
-                        <img src="img/sports/1.jpg" class="img-responsive" alt="">
+                        <img ng-src="img/sports/{{category.sport}}.png" class="img-responsive center-block" alt="" width="30%">
                         <div class="sports-box-caption">
                             <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
                                 <div class="project-name">
-                                    Basketball
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="sports-box">
-                        <img src="img/sports/2.jpg" class="img-responsive" alt="">
-                        <div class="sports-box-caption">
-                            <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Football
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="sports-box">
-                        <img src="img/sports/3.jpg" class="img-responsive" alt="">
-                        <div class="sports-box-caption">
-                            <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Hockey
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="sports-box">
-                        <img src="img/sports/4.jpg" class="img-responsive" alt="">
-                        <div class="sports-box-caption">
-                            <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Soccer
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="sports-box">
-                        <img src="img/sports/5.jpg" class="img-responsive" alt="">
-                        <div class="sports-box-caption">
-                            <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Tennis
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="sports-box">
-                        <img src="img/sports/6.jpg" class="img-responsive" alt="">
-                        <div class="sports-box-caption">
-                            <div class="sports-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Volleyball
+                                    <h2 class="text-center">{{category.sport}}</h2>
                                 </div>
                             </div>
                         </div>
