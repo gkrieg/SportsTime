@@ -37,7 +37,7 @@
     <!-- Services/Controllers-->
     <script src="js/controllers.js" type="text/javascript"></script>
     <script src="js/services/UserService.js" type="text/javascript"></script>
-
+    <script src="js/services/EventService.js" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -217,7 +217,7 @@
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6" ng-repeat="category in categories">
                     <a href="" class="sports-box" ng-click="show=!show; loadEvents(category, show)" ng-init="show=false">
-                        <img ng-src="img/sports/{{category.sport}}.png" class="img-responsive center-block" alt="" width="30%">
+                        <img ng-src="img/sports/{{category.sport}}.png" class="img-responsive center-block wow bounceIn text-primary" alt="" width="30%">
                         <div class="sports-box-caption">
                             <div class="sports-box-caption-content">
                                 <div class="project-name">
@@ -228,7 +228,7 @@
                     </a>
                     <div ng-show="show">
                         <ul class="event-list">
-                            <li class="event" ng-repeat="event in category.events | orderBy: event.date">
+                            <li class="event" ng-repeat="event in category.events | orderBy: event.date" data-toggle="modal" data-target="#loginModal">
                                 <h3>{{event.date}}, {{event.time}} @ {{event.place}} </h3>
                                 <h4>We have {{event.people}} people, we need more</h4>
                             </li>
@@ -241,7 +241,7 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"ng-controller="EventCtrl">
+    <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"ng-controller="SportsCtrl">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -262,7 +262,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="create()">Create</button>
+            <button type="button" class="btn btn-primary" ng-click="create(categories[0]._id)">Create</button>
           </div>
         </div>
       </div>

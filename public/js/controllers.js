@@ -65,7 +65,8 @@ SportsTimeApp.controller('UserCtrl', ['$scope','$http','UserService','$state',fu
 
 }]);
 
-SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $http) {
+SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', 'EventService', function($scope, $http,EventService) {
+    $scope.event = EventService();
     $scope.categories = [];
     $http({
         method: 'GET',
@@ -89,6 +90,30 @@ SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', function($scope, $htt
             });
         }
     };
+
+    $scope.create = function(sport_id){
+        var otherstr = 'ObjectId("563e4d039a3e6617209fd8b3")'
+        var str = { "place": $scope.event.place,
+        "time": $scope.event.time,
+        "date": $scope.event.date,
+        "sport_id": sport_id,
+        "people": 1
+    }
+
+        ;
+
+        $http({
+          method: 'POST',
+          url: '/rest/sportstime/insertEvent/',
+          data: JSON.stringify(str)
+
+        }).then(function successCallback(response) {
+            $scope.signInRes = response.data[0];
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        })
+    };
 }]);
 
 SportsTimeApp.controller('ProfileCtrl', ['$scope','$state', function($scope, $state) {
@@ -100,17 +125,19 @@ SportsTimeApp.controller('ProfileCtrl', ['$scope','$state', function($scope, $st
 SportsTimeApp.controller('EventCtrl', ['$scope','EventService','state', function($scope, EventService,$state) {
     $scope.event = EventService();
 
-    $scope.create = function(){
-        var str = { "place": $scope.event.space,
+    $scope.create = function(sport_id){
+        var str = { "place": $scope.event.place,
         "time": $scope.event.time,
-        "date": $scope.event.date
+        "date": $scope.event.date,
+        "sport_id": "ObjectId(" + sport_id + ")",
+        "people": 1
     }
 
         ;
 
         $http({
           method: 'POST',
-          url: '/sportstime/insertUser/',
+          url: '/sportstime/insertEvent/',
           data: JSON.stringify(str)
 
         }).then(function successCallback(response) {
