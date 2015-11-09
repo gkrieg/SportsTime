@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient,
 
 /////////// Data base stuff //////////////////
 // Connection URL
-var url = 'mongodb://52.25.86.243:27017';
+var url = 'mongodb://52.25.86.243:27017/sportstime';
 var database;
 // Use connect method to connect to the Server
 MongoClient.connect(url, function(err, db) {
