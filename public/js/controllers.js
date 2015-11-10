@@ -91,12 +91,11 @@ SportsTimeApp.controller('SportsCtrl', ['$scope', '$http', 'EventService', funct
         }
     };
 
-    $scope.create = function(sport_id){
-        var otherstr = 'ObjectId("563e4d039a3e6617209fd8b3")'
+    $scope.create = function(){
         var str = { "place": $scope.event.place,
         "time": $scope.event.time,
         "date": $scope.event.date,
-        "sport_id": sport_id,
+        "sport": $scope.event.sport,
         "people": 1
     }
 

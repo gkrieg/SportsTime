@@ -98,7 +98,9 @@ app.get('/sportstime/getSportList/', function (req, res){
 app.post('/rest/sportstime/insertEvent/', function (req, res){
 	// parse request
 	var eventInfo = req.body;
-
+	var sport = eventInfo.sport_id;
+	console.log(sport);
+	
 	// insert to db
 	var events = database.collection('events');
 	events.insert(eventInfo, function(err, result){
@@ -119,7 +121,7 @@ app.post('/rest/sportstime/getEvents/', function (req, res){
 	sports.find({"sport":targetSport.sport}).toArray(function(err, resultSport){
 		assert.equal(err, null);
 		var events = database.collection('events');
-		events.find({"sport_id":resultSport[0]._id}).toArray(function(err, resultEvents){
+		events.find({"sport":resultSport[0].sport}).toArray(function(err, resultEvents){
 		assert.equal(err, null);
 		// return response
 		res.send(resultEvents);

@@ -249,6 +249,7 @@
             <h4 class="modal-title" id="myModalLabel" color=red>Create an Event</h4>
           </div>
           <div class="modal-body">
+              <div><input type="text" class="span3" name="Sport" placeholder="Which Sport?" ng-model=event.sport> </div>
               <div><input type="text" class="span3" name="Place" placeholder="Where?" ng-model=event.place> </div>
               <div><input type="text" class="span3" name="Time" placeholder="When?" ng-model=event.time> </div>
               <div><input type="text" class="span3" name="Date" placeholder="What Day?" ng-model=event.date> </div>
@@ -262,7 +263,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="create(categories[0]._id)">Create</button>
+            <button type="button" class="btn btn-primary" ng-click="create()">Create</button>
           </div>
         </div>
       </div>
